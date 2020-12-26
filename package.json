@@ -1,0 +1,44 @@
+{
+  "name": "graphic-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run compile && node scripts/watch.js",
+    "compile": "node scripts/compile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/the_markup/graphic-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/the_markup/graphic-template/issues"
+  },
+  "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
+  "dependencies": {
+    "browser-sync": "^2.26.7",
+    "browser-sync-reuse-tab": "^1.0.3",
+    "chalk": "^3.0.0",
+    "csvjson": "^5.1.0",
+    "deasync": "^0.1.19",
+    "decache": "^4.5.1",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.6",
+    "handlebars": "^4.7.2",
+    "handlebars-loader": "^1.7.1",
+    "inquirer": "^7.0.5",
+    "node-sass": "^5.0.0",
+    "node-watch": "^0.6.3",
+    "rollup": "^1.30.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "watch": "^1.0.2",
+    "webpack": "^4.41.5"
+  },
+  "devDependencies": {
+    "node-cmd": "^3.0.0",
+    "puppeteer": "^3.0.4"
+  }
+}
