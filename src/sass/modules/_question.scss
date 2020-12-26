@@ -71,6 +71,24 @@
   grid-gap: 15px;
 }
 
+@keyframes correctAnswer {
+  0% {
+    background-color: $c-black;
+  }
+  50%, 100% {
+    background-color: $c-green;
+  }
+}
+
+@keyframes correctSelectedAnswer {
+  0%{
+    background-color: $c-orange;
+  }
+  50%, 100%{
+    background-color: $c-green;
+  }
+}
+
 .question__answer {
   position: relative;
   background-color: $c-black;
@@ -81,6 +99,34 @@
   font-size: 3vw;
   line-height: 1;
   border-radius: 6vw/50%;
+
+  &.is-final {
+    background-color: $c-orange;
+
+    .question__answer-letter {
+      color: $c-white;
+    }
+
+    .question__answer-label {
+      color: $c-black;
+    }
+  }
+
+  &.is-correct {
+    animation: correctAnswer 0.3s steps(2) 5 forwards;
+
+    .question__answer-letter {
+      color: $c-white;
+    }
+
+    .question__answer-label {
+      color: $c-black;
+    }
+  }
+
+  &.is-correct.is-final {
+    animation-name: correctSelectedAnswer;
+  }
 
   &--a:before,
   &--c:before {
