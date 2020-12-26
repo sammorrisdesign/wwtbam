@@ -1,6 +1,6 @@
 .board-toggle {
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   top: 0;
   width: 100%;
   left: 0;
@@ -81,6 +81,7 @@
 .board__entry {
   width: 100%;
   font-family: $ff-display;
+  font-weight: normal;
   font-size: 5vh;
   display: flex;
   justify-content: space-around;

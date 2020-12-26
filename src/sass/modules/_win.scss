@@ -1,0 +1,53 @@
+.win {
+  position: absolute;
+  z-index: 4;
+  width: 100vw;
+  bottom: 10vw;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+
+  .is-board & {
+    opacity: 0;
+  }
+}
+
+.win__bar {
+  position: relative;
+  width: 80%;
+  margin: 2vw auto;
+  display: block;
+  background-color: $c-black;
+  border: 4px $c-blue solid;
+  color: $c-white;
+  text-align: center;
+  border-radius: 6vw/50%;
+  font-family: $ff-display;
+  font-size: 10vw;
+  font-weight: normal;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    left: -10vw;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    right: -10vw;
+  }
+}
