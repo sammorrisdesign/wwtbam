@@ -91,16 +91,20 @@
     color: $c-white;
   }
 
-  // replace with is current
-  &--7 {
-    background-color: $c-orange;
-    color: $c-black;
-  }
+  @for $i from 1 through 15 {
+    &--#{$i}.is-current {
+      background-color: $c-orange;
+      color: $c-black;
 
-  // replace with is answered
-  &--6, &--5, &--4, &--3, &--2, &--1 {
-    .board__entry-pip {
-      opacity: 1;
+      .board__entry-pip {
+        opacity: 1;
+      }
+    }
+
+    &--#{$i}.is-past {
+      .board__entry-pip {
+        opacity: 1;
+      }
     }
   }
 }

@@ -9,7 +9,7 @@
 
   <div class='board__progress'>
     {{#each data.steps}}
-      <div class='board__entry board__entry--{{ index }} {{#if isSafe}}board__entry--safe{{/if}}'>
+      <div class='board__entry board__entry--{{ index }} {{#if isSafe}}board__entry--safe{{/if}} js-board-entry' data-index='{{ index }}'>
         <span class='board__entry-number'>{{ index }}</span>
         <span class='board__entry-pip'>&#9670;</span>
         <span class='board__entry-value'>${{ stringValue }}</span>

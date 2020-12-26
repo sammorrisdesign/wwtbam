@@ -17,8 +17,8 @@ export default {
     }.bind(this));
 
     document.querySelector('.js-win').addEventListener('click', function() {
-      currentQuestion++;
       document.querySelector('body').classList.remove('is-win');
+      currentQuestion++;
       this.populateQuestion();
     }.bind(this));
   },
@@ -30,23 +30,17 @@ export default {
 
     game = data.games[gameNumber];
 
-    console.log(game);
-
-    console.log(data);
-
     this.startGame();
   },
 
   startGame() {
-    document.querySelector('body').classList.add('is-board');
+    // document.querySelector('body').classList.add('is-board');
 
     this.populateQuestion();
   },
 
   populateQuestion() {
     const question = game[currentQuestion];
-
-    console.log(question);
 
     document.querySelector('.js-question').textContent = question.Question;
     document.querySelector('.js-answer-a').textContent = question.A;
@@ -57,7 +51,6 @@ export default {
 
   selectChoice(choice) {
     if (document.querySelector('body').classList.contains('is-final')) {
-
       const correctChoice = game[currentQuestion].Answer.toLowerCase();
       const userChoice = choice.dataset.choice.toLowerCase();
 
@@ -66,8 +59,7 @@ export default {
       if (userChoice === correctChoice) {
         setTimeout(function() {
           this.onCorrectAnswer()
-        }.bind(this), 500);
-        // this.onCorrectAnswer();
+        }.bind(this), 2000);
       } else {
         // What happens on fail?
       }
@@ -83,6 +75,8 @@ export default {
 
     document.querySelector('.js-win').textContent = game[currentQuestion].Amount.toLocaleString();
     document.querySelector('body').classList.add('is-win');
+
+    this.updateBoard();
   },
 
   resetQuestionState() {
@@ -91,5 +85,19 @@ export default {
     });
 
     document.querySelector('.is-correct').classList.remove('is-correct');
+  },
+
+  updateBoard() {
+    document.querySelectorAll('.js-board-entry').forEach(entry => {
+      const entryNumber = parseInt(entry.dataset.index);
+
+      entry.classList.remove('is-current', 'is-past');
+
+      if (entryNumber == currentQuestion + 1) {
+        entry.classList.add('is-current');
+      } else if (currentQuestion + 1 > entryNumber) {
+        entry.classList.add('is-past');
+      }
+    })
   }
 }

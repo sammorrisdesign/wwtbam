@@ -100,6 +100,7 @@
   font-size: 3vw;
   line-height: 1;
   border-radius: 6vw/50%;
+  cursor: pointer;
 
   &.is-final {
     background-color: $c-orange;
