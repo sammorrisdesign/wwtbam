@@ -11,7 +11,6 @@ export default {
       }})
       .then(stream => {
         const player = document.querySelector('.video__feed');
-        console.log(stream);
         player.srcObject = stream;
         player.onloadedmetadata = e => player.play();
       })

@@ -1,0 +1,104 @@
+.board {
+  position: absolute;
+  z-index: 3;
+  width: 33vw;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  background-color: mix($c-black, $c-blue, 90%);
+  border-left: 4px solid $c-blue;
+  padding: 3.5vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.board__lifelines {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.board__lifeline {
+  position: relative;
+  background-color: $c-black;
+  border-radius: 50%;
+  border: 4px solid $c-blue;
+  height: 8vh;
+
+  &--50-50:before {
+    content: '50:50';
+    position: absolute;
+    z-index: 2;
+    top: calc(50% + 0.5vh);
+    left: 50%;
+    color: $c-white;
+    font-family: $ff-text;
+    font-size: 4vh;
+    transform: translate(-50%, -50%);
+  }
+
+  &--phone {
+    background-image: url('/assets/icons/phone.svg');
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    background-position: center;
+  }
+
+  &--ask {
+    background-image: url('/assets/icons/audience.svg');
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+    background-position: bottom center;
+  }
+}
+
+.board__entry {
+  width: 100%;
+  font-family: $ff-display;
+  font-size: 5vh;
+  display: flex;
+  justify-content: space-around;
+  color: $c-orange;
+
+  &--safe {
+    color: $c-white;
+  }
+
+  // replace with is current
+  &--7 {
+    background-color: $c-orange;
+    color: $c-black;
+  }
+
+  // replace with is answered
+  &--6, &--5, &--4, &--3, &--2, &--1 {
+    .board__entry-pip {
+      opacity: 1;
+    }
+  }
+}
+
+.board__entry-pip {
+  font-size: 3vh;
+  color: $c-white;
+  margin-top: 3px;
+  text-align: center;
+  opacity: 0;
+}
+
+.board__entry-number {
+  position: relative;
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+}
+
+.board__entry-value {
+  width: 60%;
+  display: inline-block;
+}

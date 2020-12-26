@@ -1,0 +1,17 @@
+<div class='board'>
+  <div class='board__lifelines'>
+    <div class='board__lifeline board__lifeline--50-50'></div>
+    <div class='board__lifeline board__lifeline--phone'></div>
+    <div class='board__lifeline board__lifeline--ask'></div>
+  </div>
+
+  <div class='board__progress'>
+    {{#each data.steps}}
+      <div class='board__entry board__entry--{{ index }} {{#if isSafe}}board__entry--safe{{/if}}'>
+        <span class='board__entry-number'>{{ index }}</span>
+        <span class='board__entry-pip'>&#9670;</span>
+        <span class='board__entry-value'>${{ stringValue }}</span>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,119 @@
+.question {
+  position: absolute;
+  z-index: 2;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.question__question-bar {
+  position: relative;
+  width: 80%;
+  margin: 0 auto 15px;
+  display: block;
+  background-color: $c-black;
+  border: 4px $c-blue solid;
+  min-height: 8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6vw/50%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    left: -10vw;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    right: -10vw;
+  }
+}
+
+.question__question {
+  padding: 15px 10%;
+  margin: 0 auto;
+  text-align: center;
+  color: $c-white;
+  font-weight: normal;
+  font-family: $ff-text;
+  font-size: 3vw;
+}
+
+.question__answers {
+  position: relative;
+  display: grid;
+  width: 80%;
+  margin: 0 auto 15px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.question__answer {
+  position: relative;
+  background-color: $c-black;
+  border: 4px $c-blue solid;
+  padding: 15px 15px 7px 15px;
+  color: $c-white;
+  font-family: $ff-text;
+  font-size: 3vw;
+  line-height: 1;
+  border-radius: 6vw/50%;
+
+  &--a:before,
+  &--c:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    left: calc(-10vw - 4px);
+  }
+
+  &--b:before,
+  &--d:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    right: calc(-10vw - 4px);
+  }
+}
+
+.question__answer-letter {
+  font-family: $ff-text;
+  color: $c-orange;
+
+  &:before {
+    content: '\25C6';
+    font-size: 1.5vw;
+    vertical-align: middle;
+    margin-right: 8px;
+    color: $c-white;
+  }
+}
+
+
