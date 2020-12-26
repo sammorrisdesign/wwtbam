@@ -1,3 +1,3 @@
-import example from './modules/example';
+import video from './modules/video';
 
-example.init();
+video.init();
