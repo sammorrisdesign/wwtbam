@@ -2,6 +2,7 @@ const handlebars = require('handlebars');
 const fs = require('fs-extra');
 const glob = require('glob');
 const logger = require('../utilities/logger');
+const decache = require('decache');
 
 module.exports = {
   render() {
@@ -9,10 +10,11 @@ module.exports = {
 
     let data;
 
-    if (fs.existsSync('data.json')) {
-      data = fs.readJSONSync('data.json');
+    if (fs.existsSync('./src/data/data.js')) {
+      decache('../../src/data/data.js');
+      data = require('../../src/data/data.js').init();
     } else {
-      console.log('no data found, please run npm run data');
+      data = new Object;
     }
 
     this.registerHelpers();
