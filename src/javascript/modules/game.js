@@ -61,7 +61,7 @@ export default {
           this.onCorrectAnswer()
         }.bind(this), 2000);
       } else {
-        // What happens on fail?
+        // Show final amount
       }
 
     } else {
