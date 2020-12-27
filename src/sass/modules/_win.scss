@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 4;
   width: 100vw;
-  bottom: 10vw;
+  bottom: 5vw;
   left: 0;
   right: 0;
   opacity: 0;
@@ -27,13 +27,11 @@
   display: block;
   background-color: $c-black;
   border: 4px $c-blue solid;
-  color: $c-white;
   text-align: center;
   border-radius: 6vw/50%;
-  font-family: $ff-display;
-  font-size: 10vw;
   font-weight: normal;
   cursor: pointer;
+  padding: 12px 0;
 
   &:before {
     content: "";
@@ -57,5 +55,27 @@
     margin: auto;
     width: 10vw;
     right: -10vw;
+  }
+}
+
+.win__bar-final {
+  color: $c-orange;
+  font-family: $ff-display;
+  font-size: 3vw;
+  display: none;
+
+  .is-done & {
+    display: block;
+  }
+}
+
+.win__bar-amount {
+  color: $c-white;
+  font-family: $ff-display;
+  font-size: 10vw;
+  line-height: 0.9;
+
+  .is-done & {
+    pointer-events: none;
   }
 }

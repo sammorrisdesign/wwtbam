@@ -128,3 +128,42 @@
   width: 60%;
   display: inline-block;
 }
+
+.board__walk {
+  position: absolute;
+  z-index: 15;
+  background-color: $c-black;
+  top: 35px;
+  left: 10vw;
+  border: 4px $c-blue solid;
+  padding: 15px 15px 7px 15px;
+  color: $c-white;
+  font-family: $ff-text;
+  font-size: 4vh;
+  line-height: 1;
+  border-radius: 6vw/50%;
+  cursor: pointer;
+  transition: transform 0.4s linear;
+
+  transform: translateX(calc(-100% - 10vw));
+
+  .is-board & {
+    transform: translateX(0%);
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: $c-blue;
+    margin: auto;
+    width: 10vw;
+    left: calc(-10vw - 4px);
+  }
+}
+
+.board__walk-way {
+  padding: 10px;
+}

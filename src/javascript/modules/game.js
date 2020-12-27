@@ -21,6 +21,10 @@ export default {
       currentQuestion++;
       this.populateQuestion();
     }.bind(this));
+
+    document.querySelector('.js-walk').addEventListener('click', function() {
+      this.onEnd(true);
+    }.bind(this));
   },
 
   findGame() {
@@ -61,6 +65,7 @@ export default {
           this.onCorrectAnswer()
         }.bind(this), 2000);
       } else {
+        this.onEnd(false);
         // Show final amount
       }
 
@@ -77,6 +82,26 @@ export default {
     document.querySelector('body').classList.add('is-win');
 
     this.updateBoard();
+  },
+
+  onEnd(hasWalked) {
+    let winnings;
+
+    if (hasWalked) {
+      document.querySelector('body').classList.remove('is-board');
+      winnings = game[currentQuestion - 1].Amount.toLocaleString();
+    } else {
+      if (currentQuestion >= 10) {
+        winnings = '$32,000';
+      } else if (currentQuestion >= 5) {
+        winnings = '$1,000';
+      } else {
+        winnings = '$0'
+      }
+    }
+
+    document.querySelector('.js-win').textContent = winnings;
+    document.querySelector('body').classList.add('is-win', 'is-done');
   },
 
   resetQuestionState() {
