@@ -131,6 +131,15 @@
     animation-name: correctSelectedAnswer;
   }
 
+  &.is-hidden {
+    pointer-events: none;
+
+    .question__answer-letter,
+    .question__answer-label {
+      opacity: 0;
+    }
+  }
+
   &--a:before,
   &--c:before {
     content: "";

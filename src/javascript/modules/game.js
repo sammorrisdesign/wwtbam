@@ -25,6 +25,10 @@ export default {
     document.querySelector('.js-walk').addEventListener('click', function() {
       this.onEnd(true);
     }.bind(this));
+
+    document.querySelector('.js-50-50').addEventListener('click', function() {
+      this.on5050();
+    }.bind(this));
   },
 
   findGame() {
@@ -66,7 +70,6 @@ export default {
         }.bind(this), 2000);
       } else {
         this.onEnd(false);
-        // Show final amount
       }
 
     } else {
@@ -104,9 +107,31 @@ export default {
     document.querySelector('body').classList.add('is-win', 'is-done');
   },
 
+  on5050() {
+    document.querySelector('body').classList.remove('is-board');
+
+    setTimeout(() => {
+      let options = ['A', 'B', 'C', 'D'];
+      options = options.filter(e => {
+        return e !== game[currentQuestion].Answer;
+      });
+
+      options.splice(Math.floor(Math.random() * 3), 1);
+
+      options.forEach(option => {
+        document.querySelector('.js-choice-' + option.toLowerCase()).classList.add('is-hidden');
+      })
+
+    }, 2000);
+  },
+
   resetQuestionState() {
     document.querySelectorAll('.is-final').forEach(final => {
       final.classList.remove('is-final');
+    });
+
+    document.querySelectorAll('.is-hidden').forEach(final => {
+      final.classList.remove('is-hidden');
     });
 
     document.querySelector('.is-correct').classList.remove('is-correct');
