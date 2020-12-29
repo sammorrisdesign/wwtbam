@@ -50,6 +50,8 @@ export default {
   populateQuestion() {
     const question = game[currentQuestion];
 
+    document.querySelector('body').classList.add('is-start');
+
     document.querySelector('.js-question').textContent = question.Question;
     document.querySelector('.js-answer-a').textContent = question.A;
     document.querySelector('.js-answer-b').textContent = question.B;
@@ -83,6 +85,7 @@ export default {
 
     document.querySelector('.js-win').textContent = game[currentQuestion].Amount.toLocaleString();
     document.querySelector('body').classList.add('is-win');
+    document.querySelector('body').classList.remove('is-start');
 
     this.updateBoard();
   },
