@@ -1,7 +1,8 @@
 import data from '../data.json';
+import confetti from './confetti';
 
 let game;
-let currentQuestion = 0;
+let currentQuestion = 14;
 
 export default {
   init() {
@@ -89,13 +90,21 @@ export default {
   },
 
   onCorrectAnswer() {
-    this.resetQuestionState();
+    if (currentQuestion == 14) {
+      confetti.init();
 
-    document.querySelector('.js-win').textContent = game[currentQuestion].Amount.toLocaleString();
-    document.querySelector('body').classList.add('is-win');
-    document.querySelector('body').classList.remove('is-start');
+      document.querySelector('.js-win').textContent = "Millionaire!";
+      document.querySelector('body').classList.add('is-win', 'is-done', 'is-millionaire');
+      document.querySelector('body').classList.remove('is-start');
+    } else {
+      this.resetQuestionState();
 
-    this.updateBoard();
+      document.querySelector('.js-win').textContent = game[currentQuestion].Amount.toLocaleString();
+      document.querySelector('body').classList.add('is-win');
+      document.querySelector('body').classList.remove('is-start');
+
+      this.updateBoard();
+    }
   },
 
   onEnd(hasWalked) {
