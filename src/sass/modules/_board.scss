@@ -76,6 +76,30 @@
     background-size: auto 90%;
     background-position: bottom center;
   }
+
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: url('/assets/icons/cross.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.4s linear;
+    transition-delay: 1s;
+  }
+
+  &.is-used {
+    pointer-events: none;
+
+    &:after {
+      opacity: 1;
+    }
+  }
 }
 
 .board__entry {

@@ -29,6 +29,14 @@ export default {
     document.querySelector('.js-50-50').addEventListener('click', function() {
       this.on5050();
     }.bind(this));
+
+    document.querySelector('.js-phone').addEventListener('click', function() {
+      this.onPhone();
+    }.bind(this));
+
+    document.querySelector('.js-ask').addEventListener('click', function() {
+      this.onAsk();
+    }.bind(this));
   },
 
   findGame() {
@@ -126,6 +134,45 @@ export default {
       })
 
     }, 2000);
+
+    this.killLifeLine('50-50');
+  },
+
+  onPhone() {
+    document.querySelector('body').classList.remove('is-board');
+    document.querySelector('body').classList.add('is-asking');
+    console.log("on phone");
+
+    document.querySelector('.js-start-timer').addEventListener('click', function() {
+      document.querySelector('body').classList.add('is-timing');
+
+      let timeLeft = 30;
+
+      const timer = setInterval(() => {
+
+        console.log('ticking');
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.querySelector('body').classList.add('has-timed');
+          document.querySelector('body').classList.remove('is-timing', 'is-asking');
+        }
+
+        document.querySelector('.js-timer-number').textContent = timeLeft;
+
+        timeLeft -= 1;
+      }, 1000);
+    });
+
+    this.killLifeLine('phone');
+  },
+
+  onAsk() {
+    document.querySelector('body').classList.remove('is-board');
+    this.killLifeLine('ask');
+  },
+
+  killLifeLine(lifeline) {
+    document.querySelector('.js-' + lifeline).classList.add('is-used');
   },
 
   resetQuestionState() {

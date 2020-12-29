@@ -1,0 +1,61 @@
+.timer {
+  position: absolute;
+  z-index: 20;
+  right: 10vw;
+  top: 10vh;
+  background-color: $c-black;
+  border-radius: 50%;
+  width: 20vw;
+  height: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(40vw);
+  transition: transform 0.4s linear;
+  transition-delay: 2s;
+
+  .is-asking & {
+    transform: translateX(0vw);
+  }
+}
+
+.timer__number {
+  font-size: 11vw;
+  font-family: $ff-display;
+  color: $c-white;
+  text-align: center;
+}
+
+.timer__circle-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: rotate(-90deg);
+}
+
+.timer__circle {
+  fill: none;
+  stroke-dasharray: 294;
+  stroke-dashoffset: 0;
+  stroke-linecap: square;
+  stroke-width: 5px;
+  stroke: $c-orange;
+  fill: none;
+
+  .is-timing & {
+    animation: countdown 30s steps(30) 1 forwards;
+  }
+
+  .has-timed & {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes countdown {
+  to {
+    stroke-dashoffset: -294;
+  }
+}
