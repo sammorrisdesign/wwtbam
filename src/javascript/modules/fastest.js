@@ -1,18 +1,25 @@
 import data from '../data.json';
 import board from './board';
-import game from './game';
+import audio from './audio';
 
 let question;
 
 export default {
   init() {
-    document.querySelector('body').classList.add('is-fingers');
-
-    this.findGame();
     this.bindings();
   },
 
   bindings() {
+    document.querySelector('.js-start-fastest').addEventListener('click', function() {
+      if (document.querySelector('.js-spacer').classList.contains('js-start-fastest')) {
+        document.querySelector('.js-spacer').classList.remove('js-start-fastest', 'is-active');
+
+        document.querySelector('body').classList.add('is-fingers');
+        audio.play('fastest');
+        this.findGame();
+      }
+    }.bind(this));
+
     document.querySelector('.js-finger-skip').addEventListener('click', function() {
       if (document.querySelector('body').classList.contains('is-fingers')) {
         this.showAnswers();
@@ -22,8 +29,16 @@ export default {
     document.querySelector('.js-start-game').addEventListener('click', function() {
       if (document.querySelector('body').classList.contains('is-fingers')) {
         document.querySelector('body').classList.remove('is-fingers', 'is-fastest-answers');
-        board.init();
-        game.init();
+        audio.stopAll();
+
+        document.querySelector('.js-spacer').classList.add('is-active', 'js-real-start');
+
+        document.querySelector('.js-real-start').addEventListener('click', function() {
+          if (document.querySelector('.js-spacer').classList.contains('js-real-start')) {
+            document.querySelector('.js-real-start').classList.remove('js-real-start', 'is-active');
+            board.init();
+          }
+        }.bind(this));
       }
     }.bind(this));
   },
@@ -47,8 +62,6 @@ export default {
     document.querySelector('.js-answer-b').textContent = question.B;
     document.querySelector('.js-answer-c').textContent = question.C;
     document.querySelector('.js-answer-d').textContent = question.D;
-
-    // populate results
 
     document.querySelector('.js-fastest-question').textContent = question.Question;
 
