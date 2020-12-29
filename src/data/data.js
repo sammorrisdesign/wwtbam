@@ -7,6 +7,7 @@ module.exports = {
   init() {
     data.steps = this.createSteps();
     data.games = this.compileGames();
+    data.ff = this.getCSV('ff');
 
     // console.log(data);
 

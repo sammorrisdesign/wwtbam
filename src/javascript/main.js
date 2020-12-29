@@ -1,7 +1,8 @@
-import video from './modules/video';
-import board from './modules/board';
-import game from './modules/game';
+// import video from './modules/video';
 
-// video.init();
-board.init();
-game.init();
+// // video.init();
+
+
+import fastest from './modules/fastest';
+
+fastest.init();

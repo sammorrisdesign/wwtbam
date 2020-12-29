@@ -9,7 +9,8 @@
   transition: opacity 0.2s linear;
 
   .is-board &,
-  .is-win & {
+  .is-win &,
+  .is-fastest-answers & {
     opacity: 0;
     pointer-events: none;
   }

@@ -1,0 +1,61 @@
+.fastest {
+  position: absolute;
+  z-index: 40;
+  width: 33vw;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  background-color: mix($c-black, $c-blue, 90%);
+  border-left: 4px solid $c-blue;
+  padding: 3.5vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.4s linear;
+  transform: translateX(150%);
+  pointer-events: none;
+
+  .is-fastest-answers & {
+    transform: translateX(0%);
+    pointer-events: all;
+  }
+}
+
+.fastest__question {
+  padding: 15px 30px 15px 0 ;
+  margin: 0 auto;
+  color: $c-white;
+  font-weight: normal;
+  font-family: $ff-text;
+  font-size: 2.75vw;
+  line-height: 1.1;
+}
+
+@keyframes showFastestAnswer {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.fastest__answers .question__answer {
+  margin-bottom: 15px;
+  width: 110%;
+  margin-left: -25%;
+  transform: translateX(150%);
+
+  > * {
+    opacity: 1;
+  }
+
+  .is-fastest-answers & {
+    animation: showFastestAnswer 0.4s linear 1 forwards;
+  }
+
+  @for $i from 1 through 4 {
+    .is-fastest-answers &--#{$i} {
+      animation-delay: $i + 0.5s;
+    }
+  }
+}
