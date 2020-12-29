@@ -1,0 +1,84 @@
+.audience {
+  position: absolute;
+  z-index: 20;
+  right: 10vw;
+  top: 10vh;
+  background-color: $c-black;
+  width: 20vw;
+  height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(40vw);
+  transition: transform 0.4s linear;
+  padding: 15px 1vw 4vw 1vw;
+  box-sizing: border-box;
+
+  .is-polling & {
+    transition-delay: 1s;
+    transform: translateX(0vw);
+  }
+}
+
+.audience__grid {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-size: 2vw 2vw;
+  border-right: 1px solid grey;
+  background-image:
+    linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
+}
+
+@keyframes voting {
+  @for $i from 1 through 20 {
+    #{$i * 5}% {
+      transform: scaleY(random(10) / 10);
+    }
+  }
+}
+
+.audience__bar {
+  position: relative;
+  width: calc(25% - 15px);
+  height: 35vh;
+  background-image: linear-gradient(lighten($c-blue, 20%), $c-blue, purple);
+  animation: voting 4s linear infinite alternate;
+  transform-origin: bottom;
+
+  &--a {
+    animation-delay: -0.4s;
+  }
+
+  &--b {
+    animation-delay: -1.7s;
+  }
+
+  &--c {
+    animation-delay: -4.3s;
+  }
+
+  &--d {
+    animation-delay: -3s;
+  }
+}
+
+.audience__labels {
+  position: absolute;
+  left: 1vw;
+  right: 1vw;
+  display: flex;
+  bottom: 1vh;
+}
+
+.audience__label {
+  content: 'A';
+  color: $c-orange;
+  font-family: $ff-display;
+  font-size: 2.75vw;
+  text-align: center;
+  width: 100%;
+}

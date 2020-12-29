@@ -2,7 +2,7 @@ import data from '../data.json';
 import confetti from './confetti';
 
 let game;
-let currentQuestion = 14;
+let currentQuestion = 0;
 
 export default {
   init() {
@@ -177,6 +177,12 @@ export default {
 
   onAsk() {
     document.querySelector('body').classList.remove('is-board');
+    document.querySelector('body').classList.add('is-polling');
+
+    document.querySelector('.js-hide-ask').addEventListener('click', function() {
+      document.querySelector('body').classList.remove('is-polling');
+    })
+
     this.killLifeLine('ask');
   },
 
