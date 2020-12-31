@@ -20,6 +20,7 @@
   "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
   "dependencies": {
     "browser-sync": "^2.26.7",
+    "browser-sync-logger": "^1.0.3",
     "browser-sync-reuse-tab": "^1.0.3",
     "chalk": "^3.0.0",
     "csvjson": "^5.1.0",

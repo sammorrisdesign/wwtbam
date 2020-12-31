@@ -6,19 +6,19 @@ export default {
     }
 
     // stop previous music on music switch
-    if (sound == 'final' || sound == 'explain' || sound == 'ask-the-audience' || sound == 'timer' || sound == 'fastest' || sound == 'music-early' || sound == 'music-middle' || sound == 'music-late' || sound == 'main-theme' || sound == 'phone-a-friend') {
+    if (sound == 'final' || sound == 'game-over' || sound == 'explain' || sound == 'ask-the-audience' || sound == 'timer' || sound == 'fastest' || sound == 'music-early' || sound == 'music-middle' || sound == 'music-late' || sound == 'main-theme' || sound == 'phone-a-friend') {
       document.querySelectorAll('.js-audio-music').forEach(audioEl => {
         audioEl.pause();
         audioEl.currentTime = 0;
       })
     }
 
-    console.log('trying to play', sound);
+    // console.log('trying to play', sound);
 
     const soundEl = document.querySelector(`.js-audio-${sound}`);
 
     if (soundEl) {
-      console.log(soundEl);
+      // console.log(soundEl);
       soundEl.play();
     }
   },

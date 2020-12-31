@@ -37,6 +37,12 @@ module.exports = {
     let games = new Array;
 
     games.push(this.getCSV('game--1'));
+    games.push(this.getCSV('game--2'));
+    games.push(this.getCSV('game--3'));
+    games.push(this.getCSV('game--4'));
+    games.push(this.getCSV('game--5'));
+    games.push(this.getCSV('game--6'));
+    games.push(this.getCSV('game--7'));
 
     return games;
   },
@@ -48,8 +54,6 @@ module.exports = {
       delimiter : ',',
       quote: '"'
     });
-
-    console.log(game[0]);
 
     return game;
   }

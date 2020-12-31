@@ -93,7 +93,7 @@ export default {
         this.onEnd(false);
       }
     } else {
-      if (currentQuestion > 5) { 
+      if (currentQuestion >= 5) { 
         audio.play('final');
       }
       choice.classList.add('is-final');
@@ -109,6 +109,7 @@ export default {
       document.querySelector('body').classList.add('is-win', 'is-done', 'is-millionaire');
       document.querySelector('body').classList.remove('is-start');
 
+      this.updateBoard();
       audio.play('main-theme');
     } else {
       this.resetQuestionState();
@@ -129,6 +130,7 @@ export default {
       winnings = game[currentQuestion - 1].Amount.toLocaleString();
       document.querySelector('.js-win').textContent = winnings;
       document.querySelector('body').classList.add('is-win', 'is-done');
+      audio.play('game-over');
     } else {
       if (currentQuestion >= 10) {
         winnings = '$32,000';
@@ -142,6 +144,9 @@ export default {
         audio.stopAll();
         document.querySelector('.js-win').textContent = winnings;
         document.querySelector('body').classList.add('is-win', 'is-done');
+        if (currentQuestion >= 5) {
+          audio.play('game-over');
+        }
       }, 5000);
     }
   },
@@ -162,7 +167,6 @@ export default {
       })
 
       audio.play('50-50');
-
     }, 2000);
 
     this.killLifeLine('50-50');

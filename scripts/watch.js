@@ -11,7 +11,8 @@ browserSync.init({
   server: './.build',
   port: 5000,
   open: false,
-  startPath: '/index.html'
+  startPath: '/index.html',
+  plugins: ["browser-sync-logger"]
 }, browserSyncReuseTab);
 
 browserSync.watch('./.build/*.*', (event, file) => {

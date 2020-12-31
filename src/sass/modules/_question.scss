@@ -75,7 +75,7 @@
   display: grid;
   width: 80%;
   margin: 0 auto 15px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   grid-template-rows: 1fr 1fr;
   grid-gap: 15px;
 }
@@ -118,6 +118,9 @@
   line-height: 1;
   border-radius: 6vw/50%;
   cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   > * {
     opacity: 0;
@@ -177,6 +180,7 @@
     .question__answer-letter,
     .question__answer-label {
       opacity: 0 !important;
+      animation: none;
     }
   }
 
@@ -210,6 +214,7 @@
 .question__answer-letter {
   font-family: $ff-text;
   color: $c-orange;
+  padding-right: 6px;
 
   &:before {
     content: '\25C6';
@@ -220,4 +225,8 @@
   }
 }
 
-
+.question__answer-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
