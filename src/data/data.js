@@ -7,9 +7,7 @@ module.exports = {
   init() {
     data.steps = this.createSteps();
     data.games = this.compileGames();
-    data.ff = this.getCSV('ff');
-
-    // console.log(data);
+    data.ff = this.getCSV('ff.csv');
 
     fs.writeJSONSync('src/javascript/data.json', data);
 
@@ -36,19 +34,17 @@ module.exports = {
   compileGames() {
     let games = new Array;
 
-    games.push(this.getCSV('game--1'));
-    games.push(this.getCSV('game--2'));
-    games.push(this.getCSV('game--3'));
-    games.push(this.getCSV('game--4'));
-    games.push(this.getCSV('game--5'));
-    games.push(this.getCSV('game--6'));
-    games.push(this.getCSV('game--7'));
+    fs.readdirSync(__dirname).forEach(file => {
+      if (file.includes('game--')) {
+        games.push(this.getCSV(file));
+      }
+    });
 
     return games;
   },
 
   getCSV(source) {
-    const csv = fs.readFileSync(`${__dirname}/${source}.csv`, 'utf8');
+    const csv = fs.readFileSync(`${__dirname}/${source}`, 'utf8');
 
     let game = csvjson.toObject(csv, {
       delimiter : ',',
@@ -57,5 +53,4 @@ module.exports = {
 
     return game;
   }
-
 }

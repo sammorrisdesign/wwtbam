@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run compile && node scripts/watch.js",
-    "compile": "node scripts/compile.js",
-    "data": "node src/data/data.js"
+    "compile": "node scripts/compile.js"
   },
   "repository": {
     "type": "git",
