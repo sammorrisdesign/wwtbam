@@ -1,47 +1,47 @@
-# The Markup Graphics Template
+# Who Wants To Be A Millionaire Graphics Package for OBS
 
-Structure and scripts for developing and deploying graphics on The Markup. To use, duplicate into a project specific repo. Only commit changes to this that you want to be reflected in future graphics.
+This is a web-based graphics overlay for OBS that lets you host Who Wants To Be A Millionaire-style trivia with your friends over Zoom. I got a few good Zoom calls out of it during the Covid-19 pandemic. While it's a little hacky there's some dumb fun to be had with it. Which is why I'm open-sourcing it despite that.
 
-## Requirements
+I should also mention that I don't own the rights to the format or anything. Sony Pictures Televsion own all rights to Who Wants To Be A Millionaire format, music and any other elements referenced in this project. 
 
-- [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) 
-- [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-macos.html#install-bundle-macos)
-- [jq](https://stedolan.github.io/jq/download/)
+![An animated gif of the graphics in action](demo.gif)
 
-## Setting up your graphic
+## How to run the project
+All instructions below on how to get it running are for a Mac OS/X setup. There are Windows (and possibly Linux) alternatives to everything but those are unchartered waters.
 
-First, you'll want to run `npm install` to get all dependencies.
+### Requirements
+- [Node](https://nodejs.org/en/) to compile
+- [OBS](https://obsproject.com/) to overlay and stream
+- [Soundflower](https://github.com/mattingalls/Soundflower) to route audio
 
-If starting a new project you'll need to set a few parameters in `config.json`.
+### Setting up the local server
+Once you've cloned the repo, you'll want to run `npm install`. Once completed, run `npm run start` to start locally hosting a website with the graphics package on it.
 
-| Key       | What does it do? |
-| --------- | ------------ |
-| `name`    | The most important setting. This determines where the interactive is uploaded to. Make sure it's something descriptive and unique |
-| `heading` | Only used for preview purposes when `type` is set to `inline` |
-| `source`  | Only used for preview purposes when `type` is set to `inline` |
-| `align`    | Set the alignment. Only used to determine how to preview it locally. Options are currently: `inline`, `left`, `right`, `full-width` |
-| `bespoke`  | Boolean used to determine whether graphic should be on a bespoke page or not |
+### Creating games
+Games are stored as CSV files inside the `src/data/` folder. To create a game, you'll simply need to edit or duplicate an existing game making sure to keep to the same csv format and the existing file name convention. You'll also need to add a corresponding fastest finger question in the `ff.csv` file.
+
+Games can be reached by visting `http://localhost:5000?game=1`, changing the number at the end of the url for the corresponding game number.
+
+### Setting up in OBS
+To setup in OBS, create a new scene at 1280x720 and add two sources. One being a browser pointing to `http://localhost:5000?game=1` (with control audio via OBS selected) and another being your webcam feed. For audio, select your monitoring device as Soundflower within OBS's audio settings.
+
+You'll also want to mix the browser audio a little lower, otherwise you'll be shouting over the sound effects.
+
+When you're ready click "Start Virtual Camera"
+
+### Hosting the game
+Now you're good to run a game. Make sure within Zoom to setup OBS as your webcam and Soundflower as your audio source. To progress the game, right click on your Browser source and select 'Interact'. This should open a new window with a large grey box (this serves as a representation of the browser window). A single click will start the game and progress you to the "fastest finger" round. Clicking on the question boxes will reveal the answer. Clicking on the answers will remove them and take you to a blank screen. You can then click anywhere to start the game properly.
+
+At first the game will show "the board" which is the panel that pops out on the right-hand-side. Here you are able to interact with the lifelines, show the current status of the game and click walk away to end the game. To toggle and to bring back at any point, you can click on the top third of the window.
+
+Now you should see the first question. You can click on an answer once to "lock it in" and then again to reveal the answer. Make sure to click on the same answer twice (otherwise the game gets confused, I should fix this. Again though, it's a hack). The game will then progress as the show does, with the subsequent questions until the player gets a question wrong or they reach a million.
+
+During that journey, the player can choose to use their lifelines. If they do, bring up the board and select the chosen lifeline. **50-50** will randomly select two answers to remove (You can choose to "ask the computer" just like Chris Tarrant used to, as you're technically not wrong). **Phone a Friend** will bring up a timer, which will only start when you click it. It shoudl automatically remove itself after 30 seconds. It's up to you to interpet how this lifeline works, I've been using it as "Ask a friend who is also on the Zoom call" lifeline. Finally, there is the **Ask The Audience** lifeline which will just throw up a random animation of voting bars from the show. At this point, I would normally create a Zoom poll for the question and let the non-playing players vote.
+
+Once the game is over, you should change the number in the Browser URL to start a new game!
+
+## Editing The Graphics
+If you wish to edit the graphics in anyway, the `npm run start` command also watches for changes within the `src` folder. In here you'll find handlebars templates, sass partials and javascript modules that make up the graphics package.
 
 
-## Usage
-
-- `npm run start` - For development. This compiles and then watches for changes within the `src` folder. It uses BrowerSync to locally host a preview.
-- `npm run deploy` - If you're ready to go run this to deploy. It will have to re-compile everything first, but then it will use your default aws credentials to upload. These can be set with the [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-macos.html#install-bundle-macos)
-- `npm run list` - This will return a list of previously deployed version numbers. You'll want these if you have to revert to an older version
-
-## Template structure
-
-There are two main sections to the template, represented by the two root level folders. `scripts` and `src`.
-
-`scripts` contains all scripts that are run through `npm run` commands. They deal with compiling assets, watching for changes, copying files, deploying and more. You shouldn't really have to touch these while working on a graphic. If you do it's probably because something is broken or a script needs optimising. If it's the latter, and it makes sense to, make a PR to the main template so everyone can benefit from the improvement.
-
-`src` is where your graphic code actually lives. Multiple folders contain different parts of the graphic that are later compiled...
-
-| Folder Name  | What's in it |
-| ------------ | ------------ |
-| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`. |
-| `data`       | This is the place to store data and if needed using `clean.js` filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates |
-| `javascript` | Javascript compiled using webpack sits in here. Any js files placed in the root of this folder will export as a unique javascript file. Any js files placed in newly created folders will be ignored but can imported through a root level js file. |
-| `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together but like javascript you can export multiple css files by having multiple root level files here |
-| `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated but you can reference other html files placed in here as includes. |
-
+Copyright notice here...
