@@ -2,8 +2,6 @@
 
 This is a web-based graphics overlay for OBS that lets you host Who Wants To Be A Millionaire-style trivia with your friends over Zoom. I got a few good Zoom calls out of it during the Covid-19 pandemic. While it's a little hacky there's some dumb fun to be had with it. Which is why I'm open-sourcing it despite that.
 
-I should also mention that I don't own the rights to the format or anything. Sony Pictures Televsion own all rights to Who Wants To Be A Millionaire format, music and any other elements referenced in this project. 
-
 ![An animated gif of the graphics in action](demo.gif)
 
 ## How to run the project
@@ -44,4 +42,5 @@ Once the game is over, you should change the number in the Browser URL to start 
 If you wish to edit the graphics in anyway, the `npm run start` command also watches for changes within the `src` folder. In here you'll find handlebars templates, sass partials and javascript modules that make up the graphics package.
 
 
-Copyright notice here...
+## Notice
+The format, sounds and questions used from Who Wants to Be a Millionaire are not mine, nor do I claim any involvement in their creation. The materials are used under Fair Use for academic and educational purposes, and should not be redistributed otherwise without permission from their creators.
