@@ -11,7 +11,7 @@ browserSync.init({
   server: './.build',
   port: 5000,
   open: false,
-  startPath: '/index.html',
+  startPath: '/index.html?game=1',
   plugins: ["browser-sync-logger"]
 }, browserSyncReuseTab);
 
